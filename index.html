@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Kano Lions FC - Official Website</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="images/logo.jpg" alt="Kano Lions FC Logo" class="club-logo">
+    <div>
+      <span class="club-name">KANO LIONS FC</span>
+      <span class="club-motto">Discipline • Determination • Dedication</span>
+    </div>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#squad">Squad</a>
+    <a href="#fixtures">Fixtures</a>
+    <a href="#shop">Shop</a>
+    <a href="#tickets">Tickets</a>
+    <button class="btn" onclick="showToast('Cart: '+cart+' items')">🛒 Cart <span id="cartCount">0</span></button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <img src="images/logo.jpg" alt="Kano Lions Logo" class="hero-logo">
+  <h1>WE ARE<br>KANO LIONS</h1>
+  <p>Proud. Bold. United. • Established 1992</p>
+  <p class="hero-motto">Motto: Discipline, Determination &amp; Dedication</p>
+  <div class="hero-btns">
+    <button class="btn" onclick="document.getElementById('tickets').scrollIntoView({behavior:'smooth'})">Get Tickets</button>
+    <button class="btn-green" onclick="document.getElementById('squad').scrollIntoView({behavior:'smooth'})">Our Squad</button>
+  </div>
+  <p id="countdown">Next Match Loading...</p>
+</section>
+
+<div class="wrap">
+
+  <h2 class="section-title">NEXT MATCH</h2>
+  <div class="grid">
+    <div class="card">
+      <p style="text-align:center;color:#666">Premier League — Matchday 12</p>
+      <div class="match">
+        <div><img src="images/logo.jpg" class="mini-logo"><div class="team">KANO LIONS</div></div>
+        <div class="vs">VS</div>
+        <div><div style="font-size:40px">🦅</div><div class="team">KATSINA UNITED</div></div>
+      </div>
+      <p style="text-align:center">📅 Sat, 23 Nov • 16:30 WAT<br>📍 Sani Abacha Stadium, Kano</p><br>
+      <div style="display:flex;gap:10px"><button class="btn-green" style="flex:1" onclick="buyTicket('Regular')">Buy Ticket - ₦500</button><button class="btn" style="flex:1" onclick="buyTicket('VIP')">VIP - ₦2,000</button></div>
+    </div>
+    <div>
+      <h3 class="section-title">LATEST NEWS</h3>
+      <div class="news-grid" style="grid-template-columns:1fr">
+        <div class="news"><div><h3>Kano Lions secure 2-1 victory over Rangers FC</h3><p>21 Nov 2026 • MATCH REPORT</p></div></div>
+        <div class="news"><div><h3>New youth academy partnership announced</h3><p>20 Nov 2026 • CLUB NEWS</p></div></div>
+        <div class="news"><div><h3>Stadium upgrades complete ahead of season</h3><p>18 Nov 2026 • CLUB UPDATE</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">OUR TEAM</h2>
+  <div class="team-photo-wrap">
+    <img src="images/team-photo.jpg" alt="Kano Lions Team Photo" class="team-photo">
+    <p class="team-caption">Kano Lions Football Club — 2026 Squad • Discipline, Determination &amp; Dedication</p>
+  </div>
+
+  <h2 class="section-title" id="squad">SQUAD</h2>
+  <div class="tabs">
+    <button class="tab active" onclick="filterSquad('all',this)">All</button>
+    <button class="tab" onclick="filterSquad('GK',this)">Goalkeeper</button>
+    <button class="tab" onclick="filterSquad('DF',this)">Defender</button>
+    <button class="tab" onclick="filterSquad('MF',this)">Midfielder</button>
+    <button class="tab" onclick="filterSquad('FW',this)">Forward</button>
+  </div>
+  <div class="squad" id="squadList"></div>
+
+  <h2 class="section-title" id="fixtures">FIXTURES &amp; RESULTS</h2>
+  <table class="fixture">
+    <tr><th>Date</th><th>Match</th><th>Venue</th><th>Action</th></tr>
+    <tr><td>23 Nov</td><td>Kano Lions vs Katsina United</td><td>Home</td><td><button class="btn" onclick="buyTicket('Regular')">Tickets</button></td></tr>
+    <tr><td>30 Nov</td><td>Kano Lions vs Pillars FC</td><td>Sani Abacha Stadium</td><td><button class="btn" onclick="buyTicket('Regular')">Tickets</button></td></tr>
+    <tr><td>07 Dec</td><td>Enyimba vs Kano Lions</td><td>Away</td><td><button class="btn-green" onclick="showToast('Away tickets coming soon')">Info</button></td></tr>
+  </table>
+
+  <h2 class="section-title" id="shop">SHOP — Rep The Pride</h2>
+  <div class="shop">
+    <div class="product">
+      <img src="images/home-jersey.jpg" alt="Home Jersey">
+      <span class="badge">HOME</span>
+      <h3>Home Jersey 2026</h3>
+      <p style="font-size:13px;color:#666">Peach • KANO LIONS</p>
+      <div class="price">₦15,000</div>
+      <button class="btn-green" onclick="addToCart('Home Jersey')">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="images/away-jersey.jpg" alt="Away Jersey">
+      <span class="badge blue">AWAY</span>
+      <h3>Away Jersey 2026</h3>
+      <p style="font-size:13px;color:#666">Blue • KANO LION FC</p>
+      <div class="price">₦15,000</div>
+      <button class="btn-green" onclick="addToCart('Away Jersey')">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="images/logo.jpg" alt="Lions Scarf" style="object-fit:contain;padding:20px">
+      <h3>Lions Scarf</h3>
+      <p style="font-size:13px;color:#666">Blue &amp; Yellow</p>
+      <div class="price">₦5,000</div>
+      <button class="btn-green" onclick="addToCart('Scarf')">Add to Cart</button>
+    </div>
+  </div>
+
+  <h2 class="section-title" id="tickets">TICKETS &amp; MEMBERSHIP</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Match Tickets</h3><p>Regular: <b>₦500</b> • VIP: <b>₦2,000</b> • Family: <b>₦5,000</b></p><br>
+      <form onsubmit="submitTicket(event)">
+        <select id="ticketType"><option>Regular - ₦500</option><option>VIP - ₦2,000</option><option>Family of 4 - ₦5,000</option></select>
+        <input type="text" id="ticketName" placeholder="Your Full Name" required>
+        <input type="tel" id="ticketPhone" placeholder="Phone / WhatsApp" required>
+        <button class="btn" type="submit" style="width:100%">Book Ticket on WhatsApp</button>
+      </form>
+    </div>
+    <div class="card card-blue">
+      <h3 style="color:var(--gold-light)">LIONS PRIDE MEMBERSHIP</h3><p>Join for <b>₦10,000 / year</b></p><p style="margin:10px 0">✓ 10% off all shop items<br>✓ Early access to tickets<br>✓ Members-only events<br>✓ Exclusive scarf &amp; welcome pack</p>
+      <button class="btn" style="width:100%" onclick="joinMember()">Join Now</button>
+    </div>
+  </div>
+
+  <h2 class="section-title">BECOME A SPONSOR</h2>
+  <div class="card">
+    <p>Gold Sponsor: ₦5,000,000 • Sleeve: ₦500,000 • Pitch Board: ₦250,000 • Player: ₦50,000</p><br>
+    <form onsubmit="submitSponsor(event)">
+      <input type="text" id="bizName" placeholder="Business Name" required>
+      <input type="tel" id="bizPhone" placeholder="Phone" required>
+      <select id="package"><option>Gold - ₦5,000,000</option><option>Silver - ₦500,000</option><option>Pitch Board - ₦250,000</option><option>Player Sponsorship - ₦50,000</option></select>
+      <button class="btn-green" style="width:100%" type="submit">Send Sponsorship Request</button>
+    </form>
+  </div>
+
+</div>
+
+<footer>
+  <img src="images/logo.jpg" alt="Kano Lions Logo" class="footer-logo">
+  <h3>KANO LIONS FOOTBALL CLUB</h3>
+  <p>Established 1992 • Kano, Nigeria</p>
+  <p>Motto: Discipline, Determination &amp; Dedication</p>
+  <p>hello@kanolionsfc.ng • +234 800 000 0000</p>
+  <p style="margin-top:10px"><a href="#">Instagram</a> • <a href="#">TikTok</a> • <a href="#">Facebook</a> • <a href="#">YouTube</a></p>
+  <p style="margin-top:10px;font-size:13px">© 2026 Kano Lions FC • All rights reserved</p>
+</footer>
+
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
